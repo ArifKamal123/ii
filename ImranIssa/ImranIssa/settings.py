@@ -66,8 +66,9 @@ ROOT_URLCONF = 'ImranIssa.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'APP_DIRS': True,
         'DIRS': [
-         os.path.join(BASE_DIR,'Customer','templates'),
+         os.path.join(BASE_DIR,'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
