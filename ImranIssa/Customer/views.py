@@ -5,7 +5,7 @@ from django.db import connection,IntegrityError
 from django.contrib import messages
 from django.db.utils import IntegrityError
 from django.core.exceptions import ObjectDoesNotExist
-
+import psycopg2
 # Create your views here.
 cursor = connection.cursor()
 
@@ -103,7 +103,7 @@ def customer_detail(request):
     flag = False
 
     if request.method =='POST':
-        
+        cursor = connection.cursor()
         name = request.POST['name']
         passport = request.POST['passport']
         address = request.POST['address']
@@ -118,6 +118,9 @@ def customer_detail(request):
             cursor.execute('Insert into customer(name,pass_id,address,depart_date,arrival_date,depart_origin,arrival_origin,depart_origin_1,arrival_origin_1,package_id) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
             ,(name,passport,address,dp_date,ar_date,dp_p,ar_s,dp_s,ar_p,package))
             return redirect('register')
+            except InterfaceError as exc:
+                cursor = connection.cursor()
+                return redirect('customer_detail')
         except IntegrityError:
             HttpResponseNotAllowed('<p>The Passport no provided already registered')
             messages.info(request,'Passport Already Registered')
