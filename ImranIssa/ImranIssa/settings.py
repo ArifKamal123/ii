@@ -96,8 +96,7 @@ DATABASES={
    }
 }
 
-db_from_myenv = dj_database_url.config()
-DATABASES['default'] = dj_database_url.update(db_from_myenv)
+DATABASES['default'] = dj_database_url.config(conn_max_age=600,ssl_require=True)
 
 
 # Password validation
