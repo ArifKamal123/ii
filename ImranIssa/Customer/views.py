@@ -23,7 +23,7 @@ def dictfetchall(cursor):
 
 def home(request):
 
-    return render(request,'customer/home.html',)
+    return render(request,'Customer/home.html',)
 
 
 
@@ -57,7 +57,7 @@ def packages(request):
     price_2 = int(package_2.food) + total_hotel_charges_2 + additional_charges
     price_3 = int(package_3.food) + total_hotel_charges_3 + additional_charges
     
-    return render(request,'customer/packages.html',{'package_1':package_1,'package_2':package_2,"package_3":package_3,'price_1':price_1,'price_2':price_2,'price_3':price_3})
+    return render(request,'Customer/packages.html',{'package_1':package_1,'package_2':package_2,"package_3":package_3,'price_1':price_1,'price_2':price_2,'price_3':price_3})
 
 def package_detail(request,pk):
    
@@ -65,7 +65,7 @@ def package_detail(request,pk):
     
     #Same as above but iterating over the above query is much more diffcult as it returns a dictionary of lists
     package = Packages.objects.get(package_id=pk)
-    return render(request,'customer/package_detail.html',{'i':package})
+    return render(request,'Customer/package_detail.html',{'i':package})
 
 def customer_detail_pk(request,pk):
     
@@ -96,7 +96,7 @@ def customer_detail_pk(request,pk):
  
     flag = True
 
-    return render(request,'customer/customer_detail.html',{'package':package,'flag':flag})
+    return render(request,'Customer/customer_detail.html',{'package':package,'flag':flag})
 
 
 def customer_detail(request):
@@ -124,11 +124,11 @@ def customer_detail(request):
             #raise Http404
     
 
-    return render(request,'customer/customer_detail.html',{'flag':flag})
+    return render(request,'Customer/customer_detail.html',{'flag':flag})
 
 
 def register(request):
-    return render(request,'customer/register.html')
+    return render(request,'Customer/register.html')
 
 def detail(request):
     available = False
@@ -142,8 +142,8 @@ def detail(request):
             print(type(customer))
             available = True
             entered = True
-            return render(request,'customer/details.html',{'customer':customer,'available':available,'entered':entered})
+            return render(request,'Customer/details.html',{'customer':customer,'available':available,'entered':entered})
         except ObjectDoesNotExist:
             not_available = True
-            return render(request,'customer/details.html',{'not_available':not_available})
-    return render(request,'customer/details.html',{'entered':entered,'available':available})
+            return render(request,'Customer/details.html',{'not_available':not_available})
+    return render(request,'Customer/details.html',{'entered':entered,'available':available})
