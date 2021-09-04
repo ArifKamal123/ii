@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,11 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Customer',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -57,7 +60,7 @@ AUTHENTICATION_BACKENDS = [
 ]   
 
 
-
+CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'ImranIssa.urls'
 
 TEMPLATES = [
@@ -89,9 +92,12 @@ DATABASES={
       'USER':'postgres',
       'PASSWORD':'arifkamal629',
       'HOST':'localhost',
-      'PORT':'5432',
+      'PORT':'',
    }
 }
+
+db_from_myenv = dj_database_url.config()
+DATABASES['default'] = dj_database_url.update(db_from_myenv)
 
 
 # Password validation
