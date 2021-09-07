@@ -5,7 +5,6 @@ from django.db import connection,IntegrityError
 from django.contrib import messages
 from django.db.utils import IntegrityError
 from django.core.exceptions import ObjectDoesNotExist
-import psycopg2
 # Create your views here.
 cursor = connection.cursor()
 
