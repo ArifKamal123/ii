@@ -70,7 +70,7 @@ def package_detail(request,pk):
 def customer_detail_pk(request,pk):
     
     if request.method =='POST':
-        
+        cursor = connection.cursor()
         name = request.POST['name']
         passport = request.POST['passport']
         address = request.POST['address']
