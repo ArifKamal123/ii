@@ -88,7 +88,7 @@ def customer_detail_pk(request,pk):
             HttpResponseNotAllowed('<p>The Passport no provided already registered')
             messages.info(request,'Passport Already Registered')    
     
-    
+    cursor = connection.cursor()
     cursor.execute("select * from packages where package_id=(%s)",(pk))
 
     package = Packages.objects.get(package_id=pk)
