@@ -67,7 +67,7 @@ def package_detail(request,pk):
     return render(request,'Customer/package_detail.html',{'i':package})
 
 def customer_detail_pk(request,pk):
-    
+    cursor = connection.cursor()
     if request.method =='POST':
         cursor = connection.cursor()
         name = request.POST['name']
